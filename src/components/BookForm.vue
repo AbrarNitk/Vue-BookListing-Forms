@@ -2,12 +2,19 @@
   <form v-on:submit.prevent="bookSubmit(bookData)" class="" action="#" method="post">
     <input v-model="bookData.bookTitle" type="text" name="title" value="" placeholder="Book Title">
     <input v-model="bookData.bookAuthor" type="text" name="author" value="" placeholder="Book Author">
-    <label for="finishedReading">Finished Reading</label>
-    <input v-model="finishedReading" name="checkbox" value="" placeholder="Finished Reading">
-    <label for="borrowed">borrowed</label>
-    <input v-model="ownership" name="radio" value="borrowed">
-    <label for="bought">bought</label>
-    <input v-model="ownership" name="radio" value="bought">
+    <label for="finishedReading">
+      Finished Reading
+      <input v-model="bookData.finishedReading" type="checkbox">
+    </label>
+    <label for="borrowed">
+      borrowed
+      <input v-model="bookData.ownership" type="radio" value="borrowed">
+    </label>
+
+    <label for="bought">
+      bought
+      <input v-model="bookData.ownership" type="radio" value="bought">
+    </label>
     <button type="submit" name="button">Add Book</button>
   </form>
 </template>
@@ -18,10 +25,12 @@ export default {
   props: ["books"],
   data() {
     return {
-      bookTitle: "",
-      bookAuthor: "",
-      finishedReading: false,
-      ownership: []
+      bookData: {
+        bookTitle: "",
+        bookAuthor: "",
+        finishedReading: false,
+        ownership: []
+      },
     };
   },
   methods: {
